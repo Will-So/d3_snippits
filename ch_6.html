@@ -6,17 +6,33 @@
     <title>D3 Basics</title>
     </head>
     <body>
-        <div class='bar'></div>
 
         <script type="text/javascript">
+        var dataset = [];
+        for (var i = 0; i <20; i++){
+             var new_number = Math.random() * 30;
+             dataset.push(new_number);
+         }
+
+        d3.select('Body').selectAll('div')
+            .data(dataset)
+            .enter()
+            .append('div')
+            .attr('class', 'bar')
+            .style('height', function(d){
+                return d * 5 + 'px';
+            });
+
         </script>
+
     </body>
     <style>
     div.bar{
         display: inline-block;
         width: 20px;
-        height: 75px;
-        background-color: teal;
+        height: 75p
+        background-color: red;
+        margin-right: 2px;
     }
     </style>
 </html>
