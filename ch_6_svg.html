@@ -8,19 +8,24 @@
     <body>
 
         <script type="text/javascript">
-        var dataset = [];
-        for (var i = 0; i < 20; i++){
-             var new_number = Math.floor(Math.random() * 30);
-             dataset.push(new_number);
-         }
+        var dataset = [ 5, 10, 15, 20, 25 ];
+        var w = 500;
+        var h = 50;
+        var svg = d3.select('body').append('svg';
+        svg.attr('width', w)
+           .attr('height', h);
 
-        d3.select('Body').selectAll('div')
+        var cicles = svg.selectAll('circle')
             .data(dataset)
             .enter()
-            .append('div')
-            .attr('class', 'bar')
-            .style('height', function(d){
-                return d * 5 + 'px';
+            .append('circle');
+
+        circles.attr('cy', h/2)
+            .attr('r', function(d){
+                return d;
+            })
+            .attr('cx', function(d, i) {
+                return (i * 50) + 25;
             });
 
         </script>
