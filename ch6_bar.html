@@ -8,16 +8,19 @@
     <body>
         <script type="text/javascript">
         var w = 500; 
-        var h = 100;
+        var h = 200;
         barPadding = 1; 
+        multiplier = 5; //necessary to make the file large enough
 
         var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
-                    11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
+                    11, 12, 15, 20, 18, 17, 16, 18, 23, 25, 28];
 
         var svg = d3.select('body')
                     .append('svg')
                     .attr('width', w)
                     .attr('height', h);
+
+
 
         svg.selectAll('rect')
             .data(dataset)
@@ -25,20 +28,42 @@
             .append('rect')
             .attr('x', 0)
             .attr('y', function(d){
-                return h - d;
+                return h - d * multiplier;
             })
             .attr('width', w / dataset.length - barPadding)
             .attr('height', function(d){
-                return d * 4;
+                return d * multiplier;
             })
             .attr('x', function(d, i){
                 return i * (w / dataset.length);
             })
-            .attr('fill', 'teal');
+            .attr('fill', function(d){
+                return 'rgb(0,0, ' + (d * 10) + ')';
+            });
+
+        var text = svg.selectAll('text')
+            .data(dataset)
+            .enter()
+            .append('text')
+            .text(function(d){
+                return d;
+            });
+
+        text.attr('x', function(d, i){
+            return i * (w / dataset.length) + 5;  //+ 5 moves text inside of the thing
+            })
+            .attr('y', function(d){
+            return h - (d * multiplier) + 15;
+            })
+            .attr('fill', 'white')
+            .attr('font-size', '11px')
+            .attr('text-anchir', 'right');
 
 
 
 
         </script>
+        <style>
+        </style>
     </body>
 </html>
