@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>D3 Basics</title>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+  </head>
+  <body>
+    <script>
+     var dataset = [10, 5, 23, 12, 50, 2, 13, 8];
+     var colorScale = d3.scale.category20c();
+
+     height = 600
+
+     var svg = d3.select("body").append("svg")
+       .attr("width", 600)
+       .attr("height", 500);
+
+     svg.selectAll("rect") // Empty list of rectangles
+       .data(dataset)
+       .enter().append("rect")
+       .attr("y", function(d) {
+       return 600 - d * 10;}) // The 10 creates a space here from the top. This depends on d so we have to write a function
+       .attr("width", 50)
+       .attr("height", function(d) { return d * 10; }) //d is the madeup dataset. We write a function that depends on D
+       .attr("x", function(d, i) { return i * 40; }) //i is the location you are in the dataset. Sets the x position. 
+       .style("fill", function(d, i) { return colorScale(i); }); //style when changing the css
+
+    </script>
+  </body>
+</html>

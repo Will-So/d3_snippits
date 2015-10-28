@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>D3 is Great</title>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+  </head>
+  <body>
+    <p>Paragraph one.</p>
+    <p>Paragraph two.</p>
+  </body>
+  <script>
+  var svg = d3.select("body").append("svg")
+       .attr("width", 700)
+       .attr("height", 700);
+  dataset = [10, 20, 30];
+
+  svg.selectAll('circle')
+  	.data(dataset)
+  	.enter()
+  	.append('circle')
+  	.attr('r', function(d){ return d * 8;})
+  	.attr('cx', 50)
+  	.attr('cy', 100)
+  	.attr('fill', 'crimson')
+  	.style('fill-opacity', .4);
+
+
+  </script>
+</html>
